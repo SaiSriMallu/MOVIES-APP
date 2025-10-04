@@ -1,0 +1,237 @@
+/* GENERAL STYLES */
+body {
+  background-color: #0c0c0c;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* HEADER */
+header {
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+header h1 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+}
+
+header h1 i {
+  margin-right: 10px;
+}
+
+/* CONTAINER FOR NAV + SEARCH */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* NAVIGATION LINKS */
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+nav a:hover {
+  color: #e84118;
+}
+
+/* SEARCH SECTION */
+#search-section {
+  display: flex;
+  gap: 5px;
+}
+
+#searchInput {
+  width: 300px;
+  padding: 10px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+#searchBtn {
+  background-color: #ff4757;
+  border: none;
+  padding: 10px 15px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* MOVIE GRID */
+#movies {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 20px;
+}
+
+.movie {
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.movie:hover {
+  transform: scale(1.05);
+}
+
+.movie img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.movie p {
+  height: 50px;           /* keep fixed height for consistency */
+  margin: 5px 10px;       /* reduced top/bottom margin */
+  overflow: hidden;       
+  font-weight: bold;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.add-btn,
+.remove-btn {
+  border: none;
+  padding: 8px 12px;
+  margin: 0px 10px 10px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+}
+
+.add-btn {
+  background-color: #2ed573;
+}
+
+.add-btn:hover {
+  background-color: #1eae60;
+}
+
+.remove-btn {
+  background-color: #e84118;
+}
+
+.remove-btn:hover {
+   background-color: #ff6b81;
+}
+
+/* PAGINATION */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* space between buttons and page number */
+  padding: 15px 0;
+}
+
+.pagination button {
+  background-color: #2f3640;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.pagination button:hover {
+  background-color: #ff4757;
+}
+
+#currentPage {
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+}
+
+/* FOOTER */
+footer {
+  background-color: #1a1a1a;
+  padding: 15px 0;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  width: 100%;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+}
+/* Hamburger menu (hidden by default) */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: white;
+}
+
+/* Responsive for half screen (~tablet/laptop half screen) */
+@media (max-width: 900px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  header h1 {
+    flex: 1;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  /* Search bar moves left */
+  #search-section {
+    order: -1;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+  }
+
+  /* Hide nav by default */
+  nav {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  /* Show hamburger */
+  .hamburger {
+    display: block;
+  }
+
+  /* Toggle when active */
+  nav.active {
+    display: flex;
+  }
+}
