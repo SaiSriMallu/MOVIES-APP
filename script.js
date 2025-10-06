@@ -45,8 +45,7 @@ function renderMovies(movies, type) {
     const movieDiv = document.createElement('div');
     movieDiv.classList.add('movie');
 
-    const safeTitle = movie.title.replace(/'/g, "\\'"); // escape single quotes
-
+    const safeTitle = movie.title.replace(/'/g, "\\'");
     movieDiv.innerHTML = `
       <img src="${IMAGE_BASE_URL + (movie.posterPath || movie.poster_path)}" alt="${movie.title}">
       <p class="movie-title" title="${movie.title}">${movie.title}</p>
@@ -63,7 +62,6 @@ function renderMovies(movies, type) {
     } else {
       btn.addEventListener('click', () => removeFromWatchlist(movie.id));
     }
-
     moviesContainer.appendChild(movieDiv);
   });
 }
@@ -85,12 +83,10 @@ function showWatchlist() {
   const storedList = JSON.parse(localStorage.getItem('watchlist')) || [];
   showingWatchlist = true;
   document.querySelector('.pagination').style.display = 'none';
-
   if (storedList.length === 0) {
     moviesContainer.innerHTML = '<p style="text-align:center;">Your watchlist is empty.</p>';
     return;
   }
-
   renderMovies(storedList, 'remove');
 }
 
@@ -124,14 +120,12 @@ prevBtn.addEventListener('click', () => {
     loadMoviesPage();
   }
 });
-
 nextBtn.addEventListener('click', () => {
   if (currentPage < totalPages) {
     currentPage++;
     loadMoviesPage();
   }
 });
-
 function loadMoviesPage() {
   if (showingWatchlist) return; // Prevent pagination on watchlist
   let url;
@@ -143,19 +137,16 @@ function loadMoviesPage() {
   fetchMovies(url, currentPage);
 }
 
-// ---------------- Event Listeners ----------------
 searchBtn.addEventListener('click', searchMovies);
 searchInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') searchMovies();
 });
-
 homeBtn.addEventListener('click', () => {
   currentQuery = '';
   currentPage = 1;
   const popularURL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US`;
   fetchMovies(popularURL, currentPage);
 });
-
 watchlistBtn.addEventListener('click', showWatchlist);
 
 // ---------------- On Load ----------------
@@ -163,6 +154,26 @@ window.addEventListener('load', () => {
   const popularURL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US`;
   fetchMovies(popularURL, currentPage);
 });
-document.querySelector(".hamburger").addEventListener("click", () => {
-  document.querySelector("nav").classList.toggle("active");
+
+/* --------- MOBILE HEADER Interactivity ----------- */
+const searchToggle = document.querySelector('.search-toggle');
+const hamburgerToggle = document.querySelector('.hamburger');
+const expandSearch = document.getElementById('expand-search');
+const expandNav = document.getElementById('expand-nav');
+// Toggle overlays, only one at a time
+searchToggle.addEventListener('click', () => {
+  expandSearch.classList.toggle('active');
+  expandNav.classList.remove('active');
+});
+hamburgerToggle.addEventListener('click', () => {
+  expandNav.classList.toggle('active');
+  expandSearch.classList.remove('active');
+});
+document.addEventListener('click', function(e) {
+  if (window.innerWidth <= 800 &&
+      !e.target.closest('.header-icons') &&
+      !e.target.closest('.expand-section')) {
+    expandSearch.classList.remove('active');
+    expandNav.classList.remove('active');
+  }
 });

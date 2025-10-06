@@ -5,45 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Movie Library</title>
   <link rel="stylesheet" href="style.css" />
-  <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-/>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
 <header>
-  <h1><i class="fa-solid fa-video"></i> Movie Library</h1>
-  
-  <div class="header-right">
-      <!-- Hamburger for small screens -->
-      <div class="hamburger">
-        <i class="fa-solid fa-bars"></i>
-      </div>
-
-      <nav>
-        <a id="homeBtn"><i class="fa-solid fa-house"></i> Home</a>
-        <a id="watchlistBtn"><i class="fa-solid fa-bookmark"></i> Watchlist</a>
-      </nav>
-      
-      <section id="search-section">
-        <input type="text" id="searchInput" placeholder="Search movies..." />
-        <button id="searchBtn">Search</button>
-      </section>
+  <div class="header-row">
+    <h1><i class="fa-solid fa-video"></i> Movie Library</h1>
+    <div class="header-icons">
+      <span class="search-toggle"><i class="fa-solid fa-search"></i></span>
+      <span class="hamburger"><i class="fa-solid fa-bars"></i></span>
+    </div>
   </div>
+  <div id="expand-search" class="expand-section">
+    <input type="text" id="searchInput" placeholder="Search movies..." />
+    <button id="searchBtn">Search</button>
+  </div>
+  <nav id="expand-nav" class="expand-section">
+    <a id="homeBtn"><i class="fa-solid fa-house"></i> Home</a>
+    <a id="watchlistBtn"><i class="fa-solid fa-bookmark"></i> Watchlist</a>
+  </nav>
 </header>
 
 
-  <main id="movies"></main>
-  <div class="pagination">
-    <button id="prevBtn">Previous</button>
-    <span id="currentPage">1</span>
-    <button id="nextBtn">Next</button>
-  </div>
+
+<main id="movies"></main>
+<div class="pagination">
+  <button id="prevBtn">Previous</button>
+  <span id="currentPage">1</span>
+  <button id="nextBtn">Next</button>
+</div>
 
 
-
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
